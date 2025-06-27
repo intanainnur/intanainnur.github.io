@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Studies</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #fff0f5, #ffe4ec);
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    #menu {
+      background-color: #fff5fa;
+      text-align: center;
+      padding: 15px 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    #menu a {
+      margin: 0 20px;
+      text-decoration: none;
+      font-size: 18px;
+      color: #d63384;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    #menu a:hover {
+      color: #b3005c;
+    }
+    h1 {
+      text-align: center;
+      color: #d63384;
+      font-size: 36px;
+      margin: 40px auto 20px;
+      padding: 10px 30px;
+      background: #ffe6f0;
+      border-radius: 10px;
+      width: fit-content;
+      border: 2px dashed #ff99cc;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      opacity: 0;
+      animation: fadeIn 1.5s ease-in forwards;
+    }
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+    .education-container {
+      max-width: 1000px;
+      margin: 60px auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+    .edu-box {
+      width: 250px;
+      padding: 20px;
+      background: #fff;
+      border: 3px dashed #ff99cc;
+      border-radius: 15px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+    .edu-box:hover {
+      transform: scale(1.05);
+    }
+    .edu-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #d63384;
+    }
+    .edu-desc {
+      font-size: 14px;
+      margin-top: 8px;
+      color: #555;
+    }
+    .popup-img {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 999;
+      background: white;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      width: 300px;
+    }
+    .edu-box:hover .popup-img {
+      display: block;
+    }
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 60px auto;
+      opacity: 0;
+      animation: fadeIn 1s ease-in-out 3s forwards;
+    }
+    .button-group button {
+      padding: 12px 28px;
+      font-size: 16px;
+      background: linear-gradient(to right, #d63384, #ff66a5);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .button-group button:hover {
+      background: linear-gradient(to right, #b3005c, #ff3385);
+      transform: translateY(-2px);
+    }
+    footer {
+      background-color: #fff5fa;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 50px;
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+      font-size: 14px;
+      color: #d63384;
+    }
+    footer a {
+      color: #d63384;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    footer a:hover {
+      text-decoration: underline;
+      color: #b3005c;
+    }
+  </style>
+</head>
+<body>
+  <div id="menu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="skills.html">Skills</a>
+    <a href="education.html">Studies</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <h1>📚 My Education Journey</h1>
+
+  <div class="education-container">
+    <div class="edu-box">
+      <img src="kemas.jpg" alt="Tadika KEMAS" class="popup-img">
+      <div class="edu-content">
+        <div class="edu-title">Tadika KEMAS</div>
+        <div class="edu-desc">Started here with ABCs 😊</div>
+      </div>
+    </div>
+
+    <div class="edu-box">
+      <img src="baiduri.jpg" alt="SK Baiduri" class="popup-img">
+      <div class="edu-content">
+        <div class="edu-title">SK Desa Baiduri</div>
+        <div class="edu-desc">Standard 1–6 📘 First learning steps</div>
+      </div>
+    </div>
+
+    <div class="edu-box">
+      <img src="smkbdp.jpg" alt="SMK Damai" class="popup-img">
+      <div class="edu-content">
+        <div class="edu-title">SMK Bandar Damai Perdana</div>
+        <div class="edu-desc">Form 1–4 💫 Prefect duties</div>
+      </div>
+    </div>
+
+    <div class="edu-box">
+      <img src="kesuma.jpg" alt="SMK Tasik" class="popup-img">
+      <div class="edu-content">
+        <div class="edu-title">SMK Bandar Tasik Kesuma</div>
+        <div class="edu-desc">Form 5 ✨ Final year of school life!</div>
+      </div>
+    </div>
+
+    <div class="edu-box">
+      <img src="uitm 3.jpg" alt="UiTM Rembau" class="popup-img">
+      <div class="edu-content">
+        <div class="edu-title">UiTM Rembau</div>
+        <div class="edu-desc">Diploma in Information Management<br>Dean’s List (Sem 1, 3, 4)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="button-group">
+    <button onclick="location.href='skills.html'">Previous Page</button>
+    <button onclick="location.href='contact.html'">Next Page</button>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Intan Ainnurarfah | All rights reserved.</p>
+    <p>Follow me on 
+      <a href="https://www.instagram.com/" target="_blank">Instagram</a> | 
+      <a href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
+    </p>
+  </footer>
+
+</body>
+</html>

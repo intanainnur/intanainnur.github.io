@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Me</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #fff0f5, #ffe4ec);
+      color: #333;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .corner-decor {
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 250px;
+      height: 250px;
+      background: #ffcce6;
+      border-radius: 50%;
+      filter: blur(100px);
+      z-index: 0;
+    }
+
+    #menu {
+      background-color: #fff5fa;
+      text-align: center;
+      padding: 15px 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    #menu a {
+      margin: 0 20px;
+      text-decoration: none;
+      font-size: 18px;
+      color: #d63384;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    #menu a:hover {
+      color: #b3005c;
+    }
+
+    h1 {
+      color: #d63384;
+      font-size: 36px;
+      margin-bottom: 20px;
+      text-align: center;
+      padding: 10px 30px;
+      background: #ffe6f0;
+      border-radius: 12px;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border: 2px dashed #ff99cc;
+      font-family: 'Segoe UI', sans-serif;
+      animation: fadeInDown 1s ease-out;
+    }
+
+    @keyframes fadeInDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .content-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 60px auto;
+      max-width: 1200px;
+      gap: 40px;
+      animation: fadeIn 1.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .content-section.reverse {
+      flex-direction: row-reverse;
+    }
+    .content-section img {
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      border: 5px solid #ffc0cb;
+      transition: transform 0.3s ease;
+    }
+    .content-section img:hover {
+      transform: scale(1.03);
+    }
+
+    .content-text {
+      flex: 1 1 500px;
+      font-size: 20px;
+      line-height: 2.0;
+      text-align: justify;
+      padding: 20px;
+      background: #fffafd;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      position: relative;
+      z-index: 1;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 80px auto 40px;
+    }
+    .button-group button {
+      padding: 12px 28px;
+      font-size: 16px;
+      background: linear-gradient(to right, #d63384, #ff66a5);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .button-group button:hover {
+      background: linear-gradient(to right, #b3005c, #ff3385);
+      transform: translateY(-2px);
+    }
+
+    footer {
+      background-color: #ffe6f0;
+      color: #880e4f;
+      text-align: center;
+      font-size: 14px;
+      padding: 20px;
+      margin-top: 60px;
+      border-top: 2px dashed #ff99cc;
+      font-family: 'Segoe UI', sans-serif;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="corner-decor"></div>
+
+  <div id="menu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="skills.html">Skills</a>
+    <a href="education.html">Studies</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <h1> 🌸 My Gentle Little Chapter 🌸</h1>
+
+  <div class="content-section reverse">
+    <img src="photo_2025-06-26_13-23-55.jpg" style="height:400px; width: 300px; object-fit: cover; border-radius: 12px;" alt="photo_2025-06-26_13-23-55" />
+    <div class="content-text">
+      <p>
+        <br> 🎀I'm Intan Ainnurarfah Binti Ismail. I am 23 years old and currently living in Semenyih, Selangor. I was born at Hospital Canselor Tuanku Mukhriz (HUKM), Kuala Lumpur. And I am currently pursuing a Diploma in Information Management at Universiti Teknologi MARA (UiTM), Rembau, Negeri Sembilan.</br>
+
+        <br> 🎀Everyone call me Intan, and I prefer it that way. It is the name I have carried since I was a child, and it holds a special place in my heart. Being called anything else just does not feel like me.</br>
+
+        <br> 🎀I come from a big family with five siblings, and I am the youngest and the only daughter among my brothers. Growing up as the youngest and the only girl has shaped me into someone who is both gentle and strong, quiet yet determined. It has taught me to observe, to listen, and to express myself in ways that are meaningful and creative.</br>
+      </p>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <img src="photo_2025-06-27_08-56-05.jpg" style="height:300px; width: 300px; object-fit: cover; border-radius: 12px;" alt="photo_2025-06-27_08-56-05" />
+    <div class="content-text">
+      <p>
+        <br> 🎀I love learning, especially when it involves creativity and self-growth. I believe that small ideas, when nurtured with heart, can turn into something beautiful. I may still be on my journey of self discovery, but I carry each day with hope, purpose, and the desire to become better than I was yesterday.</br>
+
+        <br> 🎀Life, for me, is not just about reaching the finish line, but it is about finding joy and meaning in every step along the way.✨</br>
+      </p>
+    </div>
+  </div>
+
+  <div class="button-group">
+    <button onclick="location.href='index.html'">Previous Page</button>
+    <button onclick="location.href='skills.html'">Let's Explore</button>
+  </div>
+
+  <!-- 💖 FOOTER -->
+  <footer>
+    📚 Created by Intan Ainnurarfah Binti Ismail | 2023147703 | N5CDIM1105B | IMD318 | Introduction to Web Content
+  </footer>
+
+</body>
+</html>
