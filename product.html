@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Details | BubbleVibe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green-main: #b9fbc0;
+      --green-dark: #1A3C34;
+      --green-light: #d2ffe4;
+      --text-color: #fff;
+      --highlight: #ffc107;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--green-dark);
+      color: var(--text-color);
+    }
+
+    header {
+      background-color: var(--green-dark);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .nav__logo {
+      color: var(--green-main);
+      font-weight: bold;
+      font-size: 1.5rem;
+      text-decoration: none;
+    }
+
+    .nav__menu a {
+      color: #fff;
+      margin-left: 1rem;
+      text-decoration: none;
+    }
+
+    .nav__menu a:hover {
+      color: var(--highlight);
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 2rem auto;
+      background-color: #0b5e47;
+      padding: 2rem;
+      border-radius: 1rem;
+      text-align: center;
+    }
+
+    img {
+      width: 100%;
+      max-width: 400px;
+      margin: 1rem auto;
+      border-radius: 0.75rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin: 1rem 0 0.5rem;
+    }
+
+    .price {
+      font-size: 1.3rem;
+      color: var(--highlight);
+    }
+
+    .desc {
+      margin: 1rem 0;
+      font-size: 1rem;
+    }
+
+    .ingredients {
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      font-style: italic;
+      color: #e0e0e0;
+    }
+
+    .quantity {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .quantity button {
+      background-color: var(--highlight);
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-radius: 0.5rem;
+      color: #000;
+      cursor: pointer;
+    }
+
+    .quantity span {
+      font-size: 1.2rem;
+      min-width: 30px;
+      display: inline-block;
+    }
+
+    .add-btn {
+      margin-top: 1rem;
+      background-color: var(--highlight);
+      color: #000;
+      padding: 0.75rem 1.5rem;
+      font-weight: bold;
+      border-radius: 2rem;
+      border: none;
+      cursor: pointer;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 2rem;
+      text-decoration: none;
+      color: var(--highlight);
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      .add-btn {
+        padding: 0.6rem 1.2rem;
+      }
+
+      .quantity button {
+        padding: 0.4rem 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="nav">
+      <a href="index.html" class="nav__logo">BUBBLEVIBE</a>
+      <div class="nav__menu">
+        <a href="index.html#home">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#popular">Popular</a>
+        <a href="index.html#products">Products</a>
+        <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container">
+    <img id="productImage" src="" alt="Product Image">
+    <h1 id="productName">Product Name</h1>
+    <p class="price" id="productPrice">RM 0.00</p>
+    <p class="desc" id="productDesc">Product description will appear here.</p>
+    <p class="ingredients" id="productIngredients">Ingredients: -</p>
+
+    <div class="quantity">
+      <button onclick="decreaseQty()">-</button>
+      <span id="qty">1</span>
+      <button onclick="increaseQty()">+</button>
+    </div>
+
+    <button class="add-btn" onclick="addToCart()">Add to Cart</button>
+    <br>
+    <a href="index.html#products" class="back-btn">← Back to Menu</a>
+  </div>
+
+  <script>
+    const products = {
+      "americano": {
+        name: "americano",
+        price: "RM 9.00",
+        desc: "A bold and classic black coffee made with premium espresso and hot water.",
+        ingredients: "Espresso, hot water",
+        img: "img/americano.jpg"
+      },
+      "boom boom chocolate": {
+        name: "boom boom chocolate",
+        price: "RM 10.90",
+        desc: "Rich, velvety chocolate blended with creamy milk for a full-bodied indulgence.",
+        ingredients: "Chocolate syrup, milk, whipped cream",
+        img: "img/boom boom chocolate.jpg"
+      },
+      "boom boom matcha": {
+        name: "boom boom matcha",
+        price: "RM 10.90",
+        desc: "Earthy Japanese matcha blended with milk for a smooth, energizing drink.",
+        ingredients: "Matcha powder, milk, sweetener",
+        img: "img/boom boom matcha.jpg"
+      },
+      "boom boom milk tea": {
+        name: "boom boom milk tea",
+        price: "RM 10.90",
+        desc: "A perfect fusion of robust black tea and creamy milk with a hint of sweetness.",
+        ingredients: "Black tea, milk, sugar",
+        img: "img/boom boom milk tea.jpg"
+      },
+      "boom boom milk": {
+        name: "boom boom milk",
+        price: "RM 9.00",
+        desc: "Pure and simple with creamy cold milk, served smooth and refreshing.",
+        ingredients: "Fresh milk, syrup (optional)",
+        img: "img/boom boom milk.jpg"
+      },
+      "caramel machiato": {
+        name: "caramel machiato",
+        price: "RM 9.00",
+        desc: "Espresso layered with steamed milk and rich caramel drizzle on top.",
+        ingredients: "Espresso, milk, caramel syrup",
+        img: "img/caramel machiato.jpg"
+      },
+      "classic coco": {
+        name: "classic coco",
+        price: "RM 8.50",
+        desc: "Classic chocolate milk drink for cocoa lovers with nostalgic and comforting.",
+        ingredients: "Cocoa, milk, sugar",
+        img: "img/classic coco.jpg"
+      },
+      "hazelnut coco": {
+        name: "hazelnut coco",
+        price: "RM 9.00",
+        desc: "Chocolate milk with a nutty twist with the perfect combo of cocoa and hazelnut.",
+        ingredients: "Cocoa, hazelnut syrup, milk",
+        img: "img/hazelnut coco.jpg"
+      },
+      "hazelnut latte": {
+        name: "hazelnut latte",
+        price: "RM 9.00",
+        desc: "Smooth espresso with steamed milk and aromatic hazelnut flavor.",
+        ingredients: "Espresso, milk, hazelnut syrup",
+        img: "img/hazelnut latte.jpg"
+      },
+      "matcha latte": {
+        name: "matcha latte",
+        price: "RM 9.00",
+        desc: "Creamy and calming! Finely ground matcha whisked with milk.",
+        ingredients: "Matcha powder, milk, sugar",
+        img: "img/matcha latte.jpg"
+      },
+      "original milk tea": {
+        name: "original milk tea",
+        price: "RM 9.00",
+        desc: "Simple and satisfying with traditional milk tea that never disappoints.",
+        ingredients: "Black tea, milk, sugar",
+        img: "img/original milk tea.jpg"
+      },
+      "roasted milk tea with grass jelly": {
+        name: "roasted milk tea with grass jelly",
+        price: "RM 10.90",
+        desc: "Toasty milk tea paired with bouncy grass jelly for extra texture.",
+        ingredients: "Roasted tea, milk, grass jelly, sugar",
+        img: "img/roasted milk tea with grass jelly.jpg"
+      },
+      "signature brown sugar pearl milk tea": {
+        name: "signature brown sugar pearl milk tea",
+        price: "RM 10.90",
+        desc: "Sweet brown sugar syrup, chewy pearls, and fresh milk ❤ our best-seller!",
+        ingredients: "Brown sugar syrup, tapioca pearls, milk",
+        img: "img/signature brown sugar pearl milk tea.jpg"
+      },
+      "snowy coco oreo smoothie": {
+        name: "snowy coco oreo smoothie",
+        price: "RM 11.90",
+        desc: "Creamy chocolate smoothie with crunchy Oreo bits for a delightful treat.",
+        ingredients: "Chocolate base, milk, Oreo cookies, ice",
+        img: "img/snowy coco oreo smoothie.jpg"
+      },
+      "snowy double coco": {
+        name: "snowy double coco",
+        price: "RM 11.90",
+        desc: "Double the chocolate, double the fun with extra cocoa for chocoholics.",
+        ingredients: "Chocolate syrup, cocoa powder, milk, ice",
+        img: "img/snowy double coco.jpg"
+      },
+      "snowy double coco oreo smoothie (with coffee)": {
+        name: "snowy double coco oreo smoothie (with coffee)",
+        price: "RM 12.90",
+        desc: "Rich chocolate meets coffee and Oreo. Special for serious flavor lovers.",
+        ingredients: "Chocolate, coffee, Oreo, milk, ice",
+        img: "img/snowy double coco oreo smoothie (with coffee).jpg"
+      },
+      "snowy mango passionfruit smoothie": {
+        name: "snowy mango passionfruit smoothie",
+        price: "RM 12.90",
+        desc: "Tropical vibes in a cup! Sweet mango blended with zesty passionfruit.",
+        ingredients: "Mango puree, passionfruit syrup, ice",
+        img: "img/snowy mango passionfruit smoothie.jpg"
+      },
+      "snowy matcha smoothie": {
+        name: "snowy matcha smoothie",
+        price: "RM 11.90",
+        desc: "Cool and creamy matcha smoothie and earthy, fresh and energizing.",
+        ingredients: "Matcha powder, milk, ice, sweetener",
+        img: "img/snowy matcha smoothie.jpg"
+      },
+      "strawberry pudding smoothie": {
+        name: "strawberry pudding smoothie",
+        price: "RM 12.90",
+        desc: "Sweet strawberry smoothie with soft pudding bits❤refreshing and fun.",
+        ingredients: "Strawberry puree, milk, pudding, ice",
+        img: "img/strawberry pudding smoothie.jpg"
+      },
+      "bolognese chicken slice with popcorn chicken": {
+        name: "bolognese chicken slice with popcorn chicken",
+        price: "RM 13.00",
+        desc: "Macaroni in savory bolognese sauce, topped with juicy chicken slices and crispy popcorn chicken.",
+        ingredients: "Macaroni, chicken slice, popcorn chicken, bolognese sauce",
+        img: "img/bolognese chicken slice with popcorn chicken.jpg"
+        },
+      "bolognese chicken slice": {
+        name: "bolognese chicken slice",
+        price: "RM 13.00",
+        desc: "Macaroni pasta smothered in rich bolognese sauce, topped with juicy sliced chicken. A hearty and comforting bite!.",
+        ingredients: "Macaroni, chicken slice, popcorn chicken, herbs, bolognese sauce",
+        img: "img/bolognese chicken slice.jpg"
+      },
+      "cheezy chicken roll banjir": {
+        name: "cheezy chicken roll banjir",
+        price: "RM 13.00",
+        desc: "Crispy chicken rolls drenched in creamy cheese sauce  with ‘banjir’ style!",
+        ingredients: "Chicken roll, cheese sauce, fries (optional)",
+        img: "img/cheezy chicken roll banjir.jpg"
+      },
+      "korean spicy chicken roll banjir": {
+        name: "korean spicy chicken roll banjir",
+        price: "RM 13.00",
+        desc: "Spicy and savory Korean! style dish with gochujang based sauce'. kick your tastebuds!",
+        ingredients: "Korean spicy sauce, chicken or noodles, sesame seeds",
+        img: "img/korean spicy chicken roll banjir.jpg"
+      },
+      "original chicken roll": {
+        name: "original chicken rolll",
+        price: "RM 11.90",
+        desc: "Golden fried chicken rolls served hot and crispy! So perfect snack or side.",
+        ingredients: "Chicken roll, seasoning, dipping sauce",
+        img: "img/original chicken roll.jpg"
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const product = products[id];
+
+    if (product) {
+      document.getElementById("productImage").src = product.img;
+      document.getElementById("productName").textContent = product.name;
+      document.getElementById("productPrice").textContent = product.price;
+      document.getElementById("productDesc").textContent = product.desc;
+      document.getElementById("productIngredients").textContent = "Ingredients: " + product.ingredients;
+    }
+
+    let qty = 1;
+    function increaseQty() {
+      qty++;
+      document.getElementById("qty").textContent = qty;
+    }
+
+    function decreaseQty() {
+      if (qty > 1) {
+        qty--;
+        document.getElementById("qty").textContent = qty;
+      }
+    }
+
+    function addToCart() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.push({ name: product.name, price: product.price, qty });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert("Item added to cart!");
+    }
+  </script>
+
+  </footer>
+<footer style="background-color: #1A3C34; color: white; text-align: center; padding: 2rem; margin-top: 4rem;">
+  <p>&copy; 2025 BubbleVibe. All rights reserved.</p>
+  <p>Follow us: 
+    <a href="https://www.instagram.com/thebubblevibe" target="_blank" style="color: #b9fbc0; text-decoration: underline;">Instagram</a> |
+    <a href="https://www.tiktok.com/@thebubblevibe" target="_blank" style="color: #b9fbc0; text-decoration: underline;">TikTok</a>
+  </p>
+</footer>
+
+</body>
+</html>

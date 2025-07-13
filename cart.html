@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cart | BubbleVibe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green-main: #b9fbc0;
+      --green-dark: #1A3C34;
+      --green-light: #d2ffe4;
+      --text-color: #fff;
+      --highlight: #ffc107;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--green-dark);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0 1rem;
+    }
+
+    header {
+      background-color: var(--green-dark);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .nav__logo {
+      color: var(--green-main);
+      font-weight: bold;
+      font-size: 1.5rem;
+      text-decoration: none;
+    }
+
+    .nav__menu a {
+      color: #fff;
+      margin-left: 1rem;
+      text-decoration: none;
+    }
+
+    .nav__menu a:hover {
+      color: var(--highlight);
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 2rem auto;
+      background-color: #0b5e47;
+      padding: 2rem;
+      border-radius: 1rem;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 2rem;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 0.75rem;
+    }
+
+    th {
+      background-color: var(--green-main);
+      color: #000;
+    }
+
+    td {
+      background-color: #145a4a;
+    }
+
+    .total {
+      text-align: right;
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-top: 1rem;
+      color: var(--highlight);
+    }
+
+    .form-group {
+      margin: 1rem 0;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    select, input[type="radio"], input[type="text"], textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border: none;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .btn {
+      background-color: var(--highlight);
+      color: #000;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 2rem;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      display: block;
+      width: 100%;
+    }
+
+    #delivery-form {
+      display: none;
+      background-color: #134c3f;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 600px) {
+      table, th, td {
+        font-size: 0.9rem;
+      }
+
+      .btn {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="nav">
+      <a href="index.html" class="nav__logo">BUBBLEVIBE</a>
+      <div class="nav__menu">
+        <a href="index.html#home">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#products">Products</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>Your Cart</h1>
+
+    <table id="cart-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Qty</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Cart items will be added here -->
+      </tbody>
+    </table>
+
+    <p class="total" id="totalPrice">Total: RM 0.00</p>
+
+    <div class="form-group">
+      <label>Pickup or Delivery:</label>
+      <label><input type="radio" name="method" value="Pickup" checked onchange="toggleAddress()"> Pickup</label>
+      <label><input type="radio" name="method" value="Delivery" onchange="toggleAddress()"> Delivery</label>
+    </div>
+
+    <div id="delivery-form">
+      <div class="form-group">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" placeholder="Your Name">
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" placeholder="012-3456789">
+      </div>
+
+      <div class="form-group">
+        <label for="address">Delivery Address:</label>
+        <textarea id="address" rows="3" placeholder="Enter your delivery address"></textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Payment Method:</label>
+      <select>
+        <option>e-Wallet</option>
+        <option>Online Banking</option>
+        <option>Credit/Debit Card</option>
+      </select>
+    </div>
+
+    <button class="btn" onclick="checkout()">Proceed to Checkout</button>
+  </div>
+
+  <script>
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const tableBody = document.querySelector("#cart-table tbody");
+    const totalDisplay = document.getElementById("totalPrice");
+
+    let total = 0;
+
+    cart.forEach(item => {
+      const row = document.createElement("tr");
+
+      const nameCell = document.createElement("td");
+      nameCell.textContent = item.name;
+
+      const qtyCell = document.createElement("td");
+      qtyCell.textContent = item.qty;
+
+      const priceNum = parseFloat(item.price.replace("RM ", ""));
+      const itemTotal = priceNum * item.qty;
+      total += itemTotal;
+
+      const priceCell = document.createElement("td");
+      priceCell.textContent = "RM " + itemTotal.toFixed(2);
+
+      row.appendChild(nameCell);
+      row.appendChild(qtyCell);
+      row.appendChild(priceCell);
+      tableBody.appendChild(row);
+    });
+
+    totalDisplay.textContent = "Total: RM " + total.toFixed(2);
+
+    function toggleAddress() {
+      const deliveryForm = document.getElementById("delivery-form");
+      const method = document.querySelector('input[name="method"]:checked').value;
+      deliveryForm.style.display = (method === "Delivery") ? "block" : "none";
+    }
+
+    function checkout() {
+      const method = document.querySelector('input[name="method"]:checked').value;
+      if (method === "Delivery") {
+        const name = document.getElementById("name").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const address = document.getElementById("address").value.trim();
+
+        if (!name || !phone || !address) {
+          alert("Please fill in all delivery details.");
+          return;
+        }
+      }
+
+      alert("Order placed! Thank you for shopping with BubbleVibe ❤️");
+      localStorage.removeItem("cart");
+      window.location.href = "index.html";
+    }
+  </script>
+
+  </footer>
+<footer style="background-color: #1A3C34; color: white; text-align: center; padding: 2rem; margin-top: 4rem;">
+  <p>&copy; 2025 BubbleVibe. All rights reserved.</p>
+  <p>Follow us: 
+    <a href="https://www.instagram.com/thebubblevibe" target="_blank" style="color: #b9fbc0; text-decoration: underline;">Instagram</a> |
+    <a href="https://www.tiktok.com/@thebubblevibe" target="_blank" style="color: #b9fbc0; text-decoration: underline;">TikTok</a>
+  </p>
+</footer>
+
+</body>
+</html>

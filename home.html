@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home | BubbleVibe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green-main: #b9fbc0;
+      --green-dark: #1A3C34;
+      --text-color: #222;
+      --highlight: #ffc107;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #d2ffe4;
+      color: var(--text-color);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
+
+    header {
+      background-color: var(--green-dark);
+      padding: 1rem;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .nav__logo {
+      color: var(--green-main);
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+
+    .nav__menu a {
+      color: #fff;
+      margin-left: 1rem;
+    }
+
+    .nav__menu a:hover {
+      color: var(--highlight);
+    }
+
+    .hero {
+      background: url('https://i.pinimg.com/originals/3d/d1/5b/3dd15b1aa8b9fae540cb144d7d1cf131.jpg') no-repeat center center/cover;
+      padding: 6rem 2rem;
+      text-align: center;
+      color: #fff;
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 0;
+    }
+
+    .hero__container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero__title {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero__subtitle {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      background-color: var(--green-dark);
+      color: #fff;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 2rem;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .section {
+      padding: 4rem 2rem;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .section__title {
+      font-size: 2rem;
+      color: var(--green-dark);
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .product__list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      padding: 0;
+    }
+
+    .product__list li {
+      background: #fff;
+      border-radius: 1rem;
+      padding: 1rem;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .product__list li:hover {
+      transform: scale(1.05);
+    }
+
+    .product__list img {
+      width: 100%;
+      border-radius: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .about {
+      background: repeating-linear-gradient(135deg, #ffffff, #ffffff 10px, #f4f4f4 10px, #f4f4f4 20px);
+      padding: 2rem;
+      margin-top: 2rem;
+      border-radius: 1rem;
+      display: none;
+      line-height: 1.6;
+      text-align: justify;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    .about-box {
+      background-color: #fff;
+      padding: 1.5rem;
+      margin-top: 1rem;
+      border-radius: 1rem;
+      border-left: 6px solid var(--green-main);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+    }
+
+    .more-btn {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .more-btn a {
+      background-color: var(--highlight);
+      color: #000;
+      padding: 0.75rem 1.5rem;
+      border-radius: 2rem;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .hero__title { font-size: 2.2rem; }
+      .hero__subtitle { font-size: 1rem; }
+      .nav {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="nav">
+      <a href="home.html" class="nav__logo">BUBBLEVIBE</a>
+      <div class="nav__menu">
+        <a href="home.html">Home</a>
+        <a href="#" onclick="toggleAbout()">About</a>
+        <a href="cart.html">🛒 Cart (<span id="cart-count">0</span>)</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero__container">
+      <h1 class="hero__title">Sip the Vibe, Taste the Joy</h1>
+      <p class="hero__subtitle">Your perfect bubble tea and snacks stop.</p>
+      <button class="btn" onclick="toggleAbout()">About Us</button>
+    </div>
+  </section>
+
+  <div class="section about" id="aboutSection">
+    <h2 class="section__title">About BubbleVibe</h2>
+    <div class="about-box">
+      <p><strong>BubbleVibe</strong> was founded in 2025 in Conezion, Putrajaya, with the vision of creating a bubble tea experience that’s more than just a drink or clearly it's about unique flavors, a chill vibe, and the energy of music.</p>
+      <p>Our idea sparked from a group of young entrepreneurs who wanted to offer more than just beverages. They dreamed of a place where people could relax, express themselves, and enjoy their favorite drinks surrounded by rhythm and positivity.</p>
+      <p>Our tagline, <strong>"Sip the Vibe. Taste the Joy."</strong> is a promise. Each drink is crafted based on a music mood: calming like lo-fi, refreshing like pop, or bold like rock.</p>
+      <p>BubbleVibe is also committed to eco friendly packaging and tech savvy conveniences like mobile orders and loyalty rewards. We’re not just a drink stop but we’re a lifestyle space where every sip resonates with a feeling, a memory, and a vibe.</p>
+    </div>
+    <div class="about-box">
+      <h3>Vision</h3>
+      <p>To become a leading lifestyle beverage brand that unites the love for music and bubble tea, while promoting creativity, sustainability, and community connection.</p>
+    </div>
+    <div class="about-box">
+      <h3>Mission</h3>
+      <p>To deliver a refreshing and joyful bubble tea experience through high quality ingredients, innovative flavors, and the vibrant energy of music creating a space where everyone can sip, chill, and vibe.</p>
+    </div>
+  </div>
+
+  <section class="section" id="popular">
+    <h2 class="section__title">Popular Picks</h2>
+    <ul class="product__list">
+      <li>
+        <a href="product.html?id=americano">
+          <img src="img/americano.jpg" alt="">
+          <h4>Americano</h4>
+          <p>RM 9.00</p>
+        </a>
+      </li>
+      <li>
+        <a href="product.html?id=caramel machiato">
+          <img src="img/caramel machiato.jpg" alt="">
+          <h4>Caramel Macchiato</h4>
+          <p>RM 9.00</p>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="section" id="products">
+    <h2 class="section__title">Our Menu</h2>
+    <h2 class="section__title">Drinks</h2>
+
+    <ul class="product__list">
+      <li>
+        <a href="product.html?id=boom boom chocolate">
+          <img src="img/boom boom chocolate.jpg" alt="">
+          <h4>Boom Boom Chocolate</h4>
+          <p>RM 10.90</p>
+        </a>
+      </li>
+      <li>
+        <a href="product.html?id=boom boom milk tea">
+          <img src="img/boom boom milk tea.jpg" alt="">
+          <h4>Boom Boom Milk Tea</h4>
+          <p>RM 10.90</p>
+        </a>
+      </li>
+      <li>
+        <a href="product.html?id=boom boom milk">
+          <img src="img/boom boom milk.jpg" alt="">
+          <h4>Boom Boom Milk</h4>
+          <p>RM 9.00</p>
+        </a>
+      </li>
+      <li>
+        <a href="product.html?id=boom boom matcha">
+          <img src="img/boom boom matcha.jpg" alt="">
+          <h4>Boom Boom Matcha</h4>
+          <p>RM 10.90</p>
+        </a>
+      </li>
+      <li>
+        <a href="product.html?id=classic coco">
+          <img src="img/classic coco.jpg" alt="">
+          <h4>Classic Coco</h4>
+          <p>RM 9.00</p>
+        </a>
+      </li>
+      <li>
+        <a href="product.html?id=hazelnut coco">
+          <img src="img/hazelnut coco.jpg" alt="">
+          <h4>Hazelnut Coco</h4>
+          <p>RM 9.00</p>
+        </a>
+      </li>
+      <li>
+        <a href="product.html?id=hazelnut latte">
+          <img src="img/hazelnut latte.jpg" alt="">
+          <h4>Hazelnut Latte</h4>
+          <p>RM 9.00</p>
+        </a>
+      </li>
+      <li>
+        <a href="product.html?id=matcha latte">
+          <img src="img/matcha latte.jpg" alt="">
+          <h4>Matcha Latte</h4>
+          <p>RM 9.00</p>
+        </a>
+      </li>
+      <li>
+        <a href="product.html?id=original milk tea">
+          <img src="img/original milk tea.jpg" alt="">
+          <h4>Original Milk Tea</h4>
+          <p>RM 9.00</p>
+        </a>
+      </li>
+      <li>
+        <a href="product.html?id=roasted milk tea with grass jelly">
+          <img src="img/roasted milk tea with grass jelly.jpg" alt="">
+          <h4>Roasted Milk Tea with Grass Jelly</h4>
+          <p>RM 10.90</p>
+        </a>
+      </li>
+      <li>
+        <a href="product.html?id=signature brown sugar pearl milk tea">
+          <img src="img/signature brown sugar pearl milk tea.jpg" alt="">
+          <h4>Signature Brown Sugar Pearl Milk Tea</h4>
+          <p>RM 10.90</p>
+        </a>
+      </li>
+      <li>
+        <a href="product.html?id=snowy coco oreo smoothie">
+          <img src="img/snowy coco oreo smoothie.jpg" alt="">
+          <h4>Snowy Coco Oreo Smoothie</h4>
+          <p>RM 11.90</p>
+        </a>
+      </li>
+      <li>
+        <a href="product.html?id=snowy double coco oreo smoothie (with coffee)">
+          <img src="img/snowy double coco oreo smoothie (with coffee).jpg" alt="">
+          <h4>Snowy Double Coco Oreo Smoothie (With Coffee)</h4>
+          <p>RM 12.90</p>
+        </a>
+      </li>
+      <li>
+        <a href="product.html?id=snowy double coco">
+          <img src="img/snowy double coco.jpg" alt="">
+          <h4>Snowy Double Coco </h4>
+          <p>RM 11.90</p>
+        </a>
+      </li>
+      <li>
+        <a href="product.html?id=snowy mango passionfruit smoothie">
+          <img src="img/snowy mango passionfruit smoothie.jpg" alt="">
+          <h4>Snowy Mango Passionfruit Smoothie</h4>
+          <p>RM 12.90</p>
+        </a>
+      </li>
+      <li>
+        <a href="product.html?id=snowy matcha smoothie">
+          <img src="img/snowy matcha smoothie.jpg" alt="">
+          <h4>Snowy Matcha Smoothie</h4>
+          <p>RM 11.90</p>
+        </a>
+      </li>
+      <li>
+        <a href="product.html?id=strawberry pudding smoothie">
+          <img src="img/strawberry pudding smoothie.jpg" alt="">
+          <h4>Strawberry Pudding Smoothie</h4>
+          <p>RM 12.90</p>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="section" id="products">
+    <h2 class="section__title">Our Menu</h2>
+    <h2 class="section__title">Foods</h2>
+
+    <ul class="product__list">
+      <li>
+        <a href="product.html?id=bolognese chicken slice with popcorn chicken">
+          <img src="img/bolognese chicken slice with popcorn chicken.jpg" alt="">
+          <h4>Bolognese Chicken Slice With Popcorn Chicken</h4>
+          <p>RM 13.00</p>
+        </a>
+      </li>
+      <li>
+      <a href="product.html?id=bolognese chicken slice">
+          <img src="img/bolognese chicken slice.jpg" alt="">
+          <h4>Bolognese Chicken Slice </h4>
+          <p>RM 12.90</p>
+        </a>
+      </li>
+      <li>
+      <a href="product.html?id=cheezy chicken roll banjir">
+          <img src="img/cheezy chicken roll banjir.jpg" alt="">
+          <h4>Cheezy Chicken Roll Banjir </h4>
+          <p>RM 13.00</p>
+        </a>
+      </li>
+      <li>
+      <a href="product.html?id=korean spicy chicken roll banjir">
+          <img src="img/korean spicy chicken roll banjir.jpg" alt="">
+          <h4>Korean Spicy Chicken ROll Banjir</h4>
+          <p>RM 13.00</p>
+        </a>
+      </li>
+      <li>
+      <a href="product.html?id=original chicken roll">
+          <img src="img/original chicken roll.jpg" alt="">
+          <h4>Original Chicken Roll</h4>
+          <p>RM 11.90</p>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <div class="section more-btn">
+    <a href="#products">Add More</a>
+    <a href="cart.html">Go to Cart</a>
+  </div>
+
+  <script>
+    function toggleAbout() {
+      const section = document.getElementById("aboutSection");
+      section.style.display = section.style.display === "none" || section.style.display === "" ? "block" : "none";
+    }
+
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    document.getElementById("cart-count").textContent = cart.length;
+  </script>
+
+  </footer>
+<footer style="background-color: #1A3C34; color: white; text-align: center; padding: 2rem; margin-top: 4rem;">
+  <p>&copy; 2025 BubbleVibe. All rights reserved.</p>
+  <p>Follow us: 
+    <a href="https://www.instagram.com/thebubblevibe" target="_blank" style="color: #b9fbc0; text-decoration: underline;">Instagram</a> |
+    <a href="https://www.tiktok.com/@thebubblevibe" target="_blank" style="color: #b9fbc0; text-decoration: underline;">TikTok</a>
+  </p>
+</footer>
+  
+</body>
+</html>
